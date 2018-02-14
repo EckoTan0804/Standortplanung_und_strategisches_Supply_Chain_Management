@@ -1,16 +1,37 @@
-\documentclass[12pt]{book}
+\documentclass[a4paper,10pt]{book}
 
 %packages
+
+% for german
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
 \usepackage{color}
 \usepackage{soul}
 \usepackage{indentfirst}
 \usepackage{outlines}
 
+
+% for space
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+
+% for item
+\usepackage{enumitem}
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
+
+
 % for maths
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{amssymb} 
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
 \usepackage[margin=1in]{geometry}
 \usepackage{amsthm}
 \newtheorem{thm}{Theorem}[section]
@@ -22,12 +43,15 @@
 \newtheorem{conj}{Conjecture}[section]
 % \newtheorem{exmp}{Example}[section]
 \theoremstyle{remark}
-\newtheorem*{rem}{Remark}
-\newtheorem*{note}{Note}
+\newtheorem{rem}{Remark}
+\newtheorem{note}{Note}
+
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
 
 % for images
 \usepackage{graphicx}
-\graphicspath{ {images/} }
+\graphicspath{ {Images/} }
 
 % for cite
 \usepackage{biblatex}
@@ -42,8 +66,6 @@
 
 \usepackage{framed}
 \usepackage{float}
-\usepackage{amsthm}
-\newtheorem{example}{Example}
 
 % for pseudocode and algo
 \usepackage{algorithm}  
@@ -104,49 +126,47 @@
 
 % \pagestyle{empty}
 
-    \begin{titlepage}
-        \begin{flushright}
+  \begin{titlepage}
+    \begin{flushright}
 
-        \end{flushright}
-        \vspace*{2cm} 
-        \begin{center} \large
-            {\Huge \bf Standortplanung und strategisches SCM}
-            \vspace*{2.5cm}
-            
-            Ecko Tan
-            \vspace*{1.5cm}
-            
-            \today
-            \vspace*{1.5cm}
-        \end{center}
-    \end{titlepage}
+    \end{flushright}
+    \vspace*{2cm} 
+    \begin{center} \large
+      {\Huge \bf Standortplanung und strategisches SCM}
+      \vspace*{2.5cm}
+      
+      Ecko Tan
+      \vspace*{1.5cm}
+      
+      \today
+      \vspace*{1.5cm}
+    \end{center}
+  \end{titlepage}
 
-    \newpage
+  \newpage
 
+    \vspace*{\fill}
+    \begin{center}
+        \textbf{\Large \em Don't panic!}
+    \end{center}
+    \vspace*{\fill}
+      
+  \newpage
+    \tableofcontents
 
-        \vspace*{\fill}
-        \begin{center}
-            \textbf{\Large \em Don't panic!}
-        \end{center}
-        \vspace*{\fill}
-        
+  \newpage
 
-    \newpage
-        \tableofcontents
+  \include{K2_Volkswirtschaftliche_und_deskriptive_Standortmodelle}
 
-    \newpage
+  \include{K3_Standortplanung_in_der_Ebene}
 
-    \include{K2_Volkswirtschaftliche_und_deskriptive_Standortmodelle}
+  \include{K4_Standortplanung_auf_Netzwerken}
 
-    \include{K3_Standortplanung_in_der_Ebene}
+  \include{K5_Diskrete_Standortplanung}
 
-    \include{K4_Standortplanung_auf_Netzwerken}
+  \include{K6_Gebietsplanung}
 
-    \include{K5_Diskrete_Standortplanung}
-
-    \include{K6_Gebietsplanung}
-
-    
-        
+  
+      
  
 \end{document}
