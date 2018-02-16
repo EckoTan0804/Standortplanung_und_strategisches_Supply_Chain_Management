@@ -344,8 +344,10 @@ faktoren. Bei dieser Aufstellung bedarf es großer Umsicht.
       \subsubsection{Probleme / Herausforderungen} % (fold)
       \label{ssub:probleme_herausforderungen}
         \begin{itemize}
-          \item Follower $F$: Braucht sich erst auf eine Platzierungsstrategie festlegen, wenn der Erstplatzierende $L$ seine Standortwahl schon getroffen hat.
-          \item Leader $L$: Hat das Problem, dass er die Platzierungsstrategie von $F$ nicht kennt.
+          \item \textbf{Follower $F$}\\
+           Braucht sich erst auf eine Platzierungsstrategie festlegen, wenn der Erstplatzierende $L$ seine Standortwahl schon getroffen hat.
+          \item \textbf{Leader $L$}\\
+          Hat das Problem, dass er die Platzierungsstrategie von $F$ nicht kennt.
         \end{itemize}
       % subsubsection probleme_herausforderungen (end)
 
@@ -372,11 +374,30 @@ faktoren. Bei dieser Aufstellung bedarf es großer Umsicht.
           \item \textbf{Maxi-Min} \\
           $L$ platziert neue Einrichtungen so, dass sein Marktanteil maximal wird, wenn $F$ eine aggressive Strategie anwendet, d. h. $F$ das Ziel hat den Marktanteil von $L$ zu minimieren.
 
+          \begin{framed}
+            \textbf{Rechenweg}:
+            \begin{enumerate}
+              \item Bestimme zu jedem $L$ denjenigen Follower-Standort $\tilde{f}$, der dem Leader den geringsten Gewinn bringt, wenn der Leader bei $l$ platziert.
+              \item Berechne den daraus resultierenden Marktanteil des Leaders
+              \item Wähle den Standort, für den der Marktanteil des Leaders maximal wird
+            \end{enumerate}
+          \end{framed}
+          
           \item \textbf{Min-Regret (minimales Bedauern)}\\
           $L$ platziert neue Einrichtungen so, dass, egal welche Standortentscheidung $F$ dann trifft, der Zugewinn an Marktanteil für $L$ durch eine mögliche Andersplatzierung seiner Einrichtungen (nachdem $F$ seine Wahl getroffen hat) minimal wird.
 
           \item \textbf{Max-Profit}\\
-           $L$ platziert neue Einrichtungen so, dass ein Marktanteil maximal wird. wenn F ebenfalls eine geweinnmaximierende Strategie anwendet.
+          $L$ platziert neue Einrichtungen so, dass ein Marktanteil maximal wird. wenn F ebenfalls eine geweinnmaximierende Strategie anwendet.
+
+          \begin{framed}
+            \textbf{Rechenweg}:
+            \begin{enumerate}
+              \item Bestimme zu jedem $L$ denjenigen Follower-Standort $\tilde{f}$, der dem Follower den größten Gewinn bringt, wenn der Leader bei $l$ platziert.
+              \item Berechne den daraus resultierenden Marktanteil des Leaders
+              \item Wähle den Standort, für den der Marktanteil des Leaders maximal wird
+            \end{enumerate}
+          \end{framed}
+
         \end{itemize}
 
         \textbf{Zusammenfassung}
