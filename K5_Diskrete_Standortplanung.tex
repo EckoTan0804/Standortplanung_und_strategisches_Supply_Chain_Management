@@ -4,19 +4,142 @@
 
   \section{Klassifikation diskreter Standortprobleme} % (fold)
   \label{sec:klassifikation_diskreter_standortprobleme}
+
+    \par \textbf{Planungshorizont}
+    \par Anzahl der Zeitperioden (z. B. Monate, Jahre) im Planungszeitraum.
+    \begin{itemize}
+      \item Statische (Ein-Perioden) Modelle\\
+      Standortentscheidungen werden zu Beginn des Planungshorizontes getroffen
+      \item Dynamische (Mehr-Perioden) Modelle\\
+      Entscheide wo und wann, d. h. in welcher Periode, Einrichtungen platziert werden.
+    \end{itemize}
+
+    \par \textbf{Einrichtungstypen}
+    \par Unterscheide verschiedene Ausprägungen von Einrichtungen,
+
+    \par \textbf{Produktaggregation}
+    \par Ist nur ein Produkt oder sind mehrere Produkte mit unterschiedlichen Charakteristiken zu planen?
+
+    \par \textbf{Stufigkeit}
+    \par Anzahl der Stufen des Distributionsnetzwerks.
+    \begin{itemize}
+      \item Einstufige Modelle\\
+      Güterverteilung über eine Transportstufe (z. B. Lager$\rightarrow$Händler). Standortentscheidung nur auf einer Ebene (z. B. Lager).
+      \item Mehrstufige (hierarchische) Modelle\\
+      Güterverteilung über mehrere Transportstufen (z. B. Werk$\rightarrow$Lager$\rightarrow$Händler).
+    \end{itemize}
+
+    \par \textbf{Interaktion}
+    \par Interaktion zwischen Einrichtungen desselben Typs möglich, z. B. Transporte zwischen Warenhäusern.
+
+    \par \textbf{Unsicherheit}
+    \begin{itemize}
+      \item Deterministische Modelle\\
+      alle Daten und Parameter sind vollständig bekannt
+      \item Probabilistische (stochastische) Modelle\\
+      manche Daten und Parameter sind unsicher
+    \end{itemize}
+
+    \par \textbf{Flussrichtung}
+    \begin{itemize}
+      \item Distributionslogistik\\
+      Waren fließen von Werken/Lieferanten zu den Lagern/Kunden
+      \item Entsorgungslogistik (Reverse Logistics)\\
+      Waren fließen von Kunden zu Recyclinganlagen, Deponien
+    \end{itemize}
+
+    \par \textbf{Kapazitätsrestriktionen}
+    \par Beschränken die Mengen, welche produziert, transportiert, umgeschlagen etc. werden können.
+
+    \par \textbf{Transportmodus}
+    \begin{itemize}
+      \item Touren-Belieferungen\\ 
+      Auslieferungen von einer übergeordneten Einrichtung zu untergeordneten Einrichtungen (oder umgekehrt) werden zu Touren gebündelt.
+      \item Direkt-Belieferungen\\ 
+      Auslieferungen von übergeordneten zu untergeordneten Ebenen geschehen direkt und ohne Umwege.
+    \end{itemize}
+    
+    \par \textbf{}
+
+
   
   % section klassifikation_diskreter_standortprobleme (end)
 
   \section{Das Warehouse Location Problem (WLP)} % (fold)
   \label{sec:das_warehouse_location_problem_}
 
+    \par Auch als \textbf{Uncapacitated Facility Location Problem (UFLP)} oder \textbf{Simple Plant Location Problem (SPLP)} bekannt.
+
+    \par \textbf{Modell-Annahmen}
+    \begin{itemize}
+      \item statisch, einstufig, unkapazitiert, deterministisch
+      \item ein Produkt, Direkt-Belieferung, ein Einrichtungstyp, keine Interaktion
+    \end{itemize}
+
+    \par \textbf{Gegeben}
+    \begin{itemize}
+      \item Menge von Kunden $I = \{1, \dots, n\}$ mit Bedarfen $b_i, i = 1, \dots, n$
+      \item Menge potentieller Standorte $J = \{1, \dots, m\}$ für neue Einrichtungen
+      \item Kosten $t_{ij}$ für den Transport einer Mengeneinheit vom potentiellen Standort $j \in J$ zu einem Kunden $i \in I$.
+      $\rightarrow$ Gesamtkosten zur Belieferung des Kunden $i$ vom Standort $j$: $c_{ij} = b_i \cdot t_{ij}$ \\$\rightarrow$ Kostenmatrix $C = (c_{ij})_{i = 1, \dots, n, j = 1, \dots, m}$
+      \item Fixkosten $f_j$ für die Errichtung einer neuen Einrichtung am Standort $j$.
+    \end{itemize}
+
+    \par \textbf{Entscheidungen}
+    \begin{itemize}
+      \item Anzahl neuer Einrichtungen
+      \item Standorte neuer Einrichtungen
+      \item Zuordnung von Kunden zu neuen Einrichtungen
+    \end{itemize}
+
+
     \subsection{Modellierug} % (fold)
     \label{sub:modellierug}
+
+      \par \textbf{Standortentscheidung}
+      $$
+        y_j = 
+        \begin{cases}
+          1 & \text{falls am potentiellen Standort } j \text{ eine neue Einrichtung platziert wird}, j \in J\\
+          0 & \text{sonst}
+        \end{cases} 
+      $$
+
+      \par \textbf{Zuordnungsentscheidung}
     
+      $$
+        x_{ij} = 
+        \begin{cases}
+          1 & \text{falls Kunde i einer neuen Einrichtung am Standort } j \text{ zugeordnet wird}, i \in I, j \in J\\
+          0 & \text{sonst}
+        \end{cases} 
+      $$
+
+      \par \textbf{Mathematisches Modell}
+
+      \begin{equation}
+        \begin{aligned}
+          & \underset{}{\text{min}}
+          && \sum_{i=1}^{n}\sum_{j=1}^{m}c_{ij}x_{ij} + \sum_{j=1}^{m}f_ky_{j}\\
+          % & & e - (s + re) \\
+          & \text{u.d.N}
+          & & \sum_{j=1}^{m}x_{ij}=1, \forall i \qquad  (\text{Jeder Kunde } i \text{ wird genau einer neuen Einrichtung an einem Standort } j \text{ zugeordnet})\\ 
+          & & & x_{ij} \leq y_j, \forall i, \forall j \quad \text{(Kunde } i \text{ darf nur dann Standort } j \text{ zugeordnet werden, wenn an } j \text{ eine Einrichtung platziert)}\\ 
+          & & & x_{ij} \geq 0, y_j \in \{0,1\}, \forall i, \forall j \\
+        \end{aligned}
+      \end{equation}
+
     % subsection modellierug (end)
 
     \subsection{Heuristiken} % (fold)
     \label{sub:heuristiken}
+
+      Methoden zur Bestimmung einer heuristischen Lösung $x_H$ für ein Problem.
+
+      (Finden nicht notwendigerweise eine optimale Lösung.)
+
+      \par \textbf{}
+      
 
       \subsubsection{Greedy-Heuristik}
 

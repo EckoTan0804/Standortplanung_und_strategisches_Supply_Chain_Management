@@ -733,19 +733,19 @@
                f(X) = \sum_{i = 1, \dots, n}w_i\underset{k=1,\dots,p}{\text{min}}l_2(x_k, a_i)
             \end{equation} 
 
-            \begin{algorithm}[H]
-          \begin{algorithmic}[1]
-            \caption{Das Verfahren von Cooper}
-            \State Wähle eine Startlösung $X^{0} = {x_1^{(0)}, \dots, x_p^{(0)}}$ setze $l := 0$
-            \While{(!($\delta^{(l+1)}:=\frac{f(X^l)-f(X^{l+1})}{f(X^{(l)})} \leq \delta$ für ein $\delta > 0$))}
-              \State \textbf{Zuordnungsschritt (allocation)}: Berechne für $X^{(l)}$ die Partition $Pa^{(l)} = \{A_1^{(l)}, \dots, A_p^{(l)}\}$ der Kundenstandorte
-              \State \textbf{Platzierungsschritt (location)}: Bestimme die optimale Lösung $X_k^{(l+1)}$ des 1-Standortproblems mit Kunden $A_k^{(l)}$. Setze $X^{(l+1)}:= \{x_1^{(l+1), \dots, x_p^{(l+1)}}\}$
-              \State $l:=l+1$
-            \EndWhile
+          \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+              \caption{Das Verfahren von Cooper}
+              \State Wähle eine Startlösung $X^{0} = {x_1^{(0)}, \dots, x_p^{(0)}}$ setze $l := 0$
+              \While{(!($\delta^{(l+1)}:=\frac{f(X^l)-f(X^{l+1})}{f(X^{(l)})} \leq \delta$ für ein $\delta > 0$))}
+                \State \textbf{Zuordnungsschritt (allocation)}: Berechne für $X^{(l)}$ die Partition $Pa^{(l)} = \{A_1^{(l)}, \dots, A_p^{(l)}\}$ der Kundenstandorte
+                \State \textbf{Platzierungsschritt (location)}: Bestimme die optimale Lösung $X_k^{(l+1)}$ des 1-Standortproblems mit Kunden $A_k^{(l)}$. Setze $X^{(l+1)}:= \{x_1^{(l+1), \dots, x_p^{(l+1)}}\}$
+                \State $l:=l+1$
+              \EndWhile
               % \EndProcedure
             \end{algorithmic}
           % \textbf{Output:} 
-        \end{algorithm}
+          \end{algorithm}
 
 
           % subsubsection das_zuordnungsproblem_mit_metrik (end)
