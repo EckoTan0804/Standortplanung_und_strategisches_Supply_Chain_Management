@@ -53,7 +53,7 @@
 
       \begin{defn}
         \textbf{Metrik / Distanzfunktion}
-        $$d: \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$$
+        $d: \mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$
       \end{defn}
       \par welche für alle $ x, y, z \in \mathbb{R}^n, n \geq 1$ folgende Eigenschaften erfüllt: 
       \begin{itemize}
@@ -577,46 +577,182 @@
       \subsubsection{Das Interaktions-Modell mit $l_1$-Metrik} % (fold)
       \label{ssub:das_interaktions_modell_mit_l1_metrik}
 
-      \par \textbf{Zielfunktion}
+        \par \textbf{Zielfunktion}
 
-      \begin{equation}
-        \begin{aligned}
-          f(X) &= \sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}(|x_{k,1}-a_{i,1}| + |x_{k,2}- a_{i,2}|) + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}(|x_{k,1}-x_{l,1}|+|x_{k,2}- x_{l,2}|) \\
-               &=  \underbrace{\sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}|x_{k,1}-a_{i,1}| + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}|x_{k,1}-x_{l,1}|}_{=: f_1(X_1)} + \underbrace{\sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}|x_{k,2}-a_{i,2}| + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}|x_{k,2}-x_{l,2}|}_{f_2(X_2)}
-        \end{aligned} 
-      \end{equation}
+        \begin{equation}
+          \begin{aligned}
+            f(X) &= \sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}(|x_{k,1}-a_{i,1}| + |x_{k,2}- a_{i,2}|) + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}(|x_{k,1}-x_{l,1}|+|x_{k,2}- x_{l,2}|) \\
+                 &=  \underbrace{\sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}|x_{k,1}-a_{i,1}| + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}|x_{k,1}-x_{l,1}|}_{=: f_1(X_1)} + \underbrace{\sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}|x_{k,2}-a_{i,2}| + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}|x_{k,2}-x_{l,2}|}_{f_2(X_2)}
+          \end{aligned} 
+        \end{equation}
 
-      $\rightarrow$Zielfunktion zerfällt in zwei voneinander unabhängige Funktionen.
+        $\rightarrow$Zielfunktion zerfällt in zwei voneinander unabhängige Funktionen.
 
-      \par \textbf{Das Interaktions-Modell mit $l_1$-Metrik auf der Linie}
+        \par \textbf{Das Interaktions-Modell mit $l_1$-Metrik auf der Linie}
 
-      \par \textbf{Zielfunktion}
+        \par \textbf{Zielfunktion}
 
-      \begin{equation}
-        \sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}|x_{k}-a_{i}| + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}|x_{k}-x_{l}|
-      \end{equation}
+        \begin{equation}
+          \sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}|x_{k}-a_{i}| + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}|x_{k}-x_{l}|
+        \end{equation}
 
-      \par \textbf{Umformulierung}
+        \par \textbf{Umformulierung als lineares Programm}
 
-      \begin{framed}
-        \par Seien $a, b \in \mathbb{R}$ und $c, d \in \mathbb{R}_+$\\
-        \par Gilt: 
-        \[c \cdot d = 0 \text{ und } a - b = c - d\]
+        \begin{framed}
+          \par Seien $a, b \in \mathbb{R}$ und $c, d \in \mathbb{R}_+$\\
+          \par Gilt: 
+          \[c \cdot d = 0 \text{ und } a - b = c - d\]
+          \par Dann:
+          \[|a - b| = c + d\]
+          \par Ersetze:
+          \[|x_k - a_i| = \alpha_{ik} + \beta_{ik} \in \mathbb{R}_+, \text{für } \alpha_{ik}, \beta_{ik} \in \mathbb{R}_+\]
+          \par und 
+          \[|x_k - x_l| = \gamma_{kl} + \delta_{kl} \in \mathbb{R}_+, \text{für } \in \gamma_{kl}, \delta_{kl} \in \mathbb{R}_+\]
+        \end{framed}
+
         \par Dann:
-        \[|a - b| = c + d\]
-        \par Ersetze:
-        \[|x_k - a_i| = \alpha_{ik} + \beta_{ik} \in \mathbb{R}_+, \text{für } \alpha_{ik}, \beta_{ik} \in \mathbb{R}_+\]
-        \par und 
-        \[|x_k - x_l| = \gamma_{kl} + \delta_{kl} \in \mathbb{R}_+, \text{für } \in \gamma_{kl}, \delta_{kl} \in \mathbb{R}_+\]
-      \end{framed}
+
+        \begin{equation}
+          \begin{aligned}
+            & \underset{}{\text{min}}
+            && \sum_{i=1}^{n}\sum_{k=1}^{p}w_{ik}(\alpha_{ik} + \beta_{ik}) + \sum_{k=1}^{p-1}\sum_{l=k+1}^{p}s_{kl}(\gamma_{kl} + \delta_{kl})\\
+            % & & e - (s + re) \\
+            & \text{u.d.N}
+            & & x_k - \alpha_{ik} + \beta_{ik} = a_i, \quad \forall i = 1, \dots, n, k = 1, \dots, p\\ 
+            & & & \alpha_{ik} \cdot \beta_{ik} = 0, \quad \forall i = 1, \dots, n, k = 1, \dots, p\\ 
+            & & & x_k - x_l - \gamma_{kl}+ \delta_{kl} = 0, \quad \forall k, l = 1, \dots, p, k < l \\
+            & & & \gamma_{kl} \cdot \delta_{kl} = 0, \quad \forall k, l = 1, \dots, p, k < l \\
+            & & & \alpha_{ik}, \beta_{ik}, \gamma_{kl}, \delta_{kl} \geq 0, \quad \forall i, k, l \text{ und } x_k, x_l \in \mathbb{R}, \forall k,l
+          \end{aligned}
+        \end{equation}
+
+        \begin{exmp}
+          
+        \end{exmp}
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.95\textwidth]{Images/Mehrstandorten_Problem_mit_Interaktion_Umformulierung_Bsp.png}
+          \caption{Mehrstandorten Problem mit Interaktion Umformulierung Bsp}
+          \label{fig:Mehrstandorten_Problem_mit_Interaktion_Umformulierung_Bsp}
+        \end{figure}
       
       % subsubsection das_interaktions_modell_mit_l1_metrik (end)
-    
+      
+      \subsubsection{Das Interaktions-Modell mit $l_2$-Metrik} % (fold)
+      \label{ssub:das_interaktions_modell_mit_metrik}
+      
+      % subsubsection das_interaktions_modell_mit_metrik (end)
     % subsection modelle_mit_interaktion (end)
 
     \section{Zuordnungs-Modelle} % (fold)
     \label{sub:zuordnungs_modelle}
-    
+
+      \begin{itemize}
+        \item Neue Einrichtungen bieten alle gleichen Service (identische Güter) an.
+        \item Kunden befriedigen ihre Nachfrage von einem der neuen Standorte.
+      \end{itemize}
+
+      \par \textbf{Präferenzfunktion}    
+      \par Definiere eine Präferenzfunktion, welche jeden Kunden einer neuen Einrichtung zuordnet:
+      \[\text{Präf}: A \rightarrow X \qquad \qquad \text{Präf}(a_i) = x_k \in X \text{ mit } d(x_k, a_i) = \underset{l=1, \dots, p}{\text{min}}d(x_l. a_i)\]
+
+      \par ($a_i$ liegt näher bei $x_k$ als bei allen anderen Lösungspunkten; die Nachfrage von$a_i$ wird von der neuen Einrichtung $x_k$ befriedigt.)
+
+      \par Menge aller Kunden, welche einem Standort $x_l$ zugeordnet sind
+      \[A_k := \{a_i \in A | \text{Präf}(a_i) = x_k\} = \{a_i \in A | d(x_k, a_i) = d(X, a_i)\}\]
+
+        \subsection{Das p-Median Zuordnungsproblem} % (fold)
+        \label{sub:das_p_median_zuordnungsproblem}
+
+          \par \textbf{Zielfunktion}
+
+          \begin{equation}
+            f(X) = f(\{x_1, \dots, x_p\}) = \sum_{i=1,\dots,n}w_id(X, a_i)
+          \end{equation}
+          \subsubsection{Das p-Median Zuordnungsproblem mit $l_1$-Metrik} % (fold)
+          \label{ssub:das_p_median_zuordnungsproblem_mit_l1_metrik}
+            
+            \par \textbf{Zielfunktion}
+
+            \[f(X) = \sum_{i = 1, \dots, n}w_i \underset{k = 1, \dots, p}{\text{min}\{|x_{k,1} - a_{i,1}| + {x_{k,2} - a_{i,2}}\}}\]
+
+            \par Definiere
+
+            \[
+              y_k := 
+              \begin{cases}
+                1 & \text{falls der Schnittpunkte } s_k \text{ Teil der optimalen Lösung ist}, k = 1, \dots, |S|\\
+                0 & sonst 
+              \end{cases}\\ 
+            \]
+            \[
+               x_{ik} := 
+              \begin{cases}
+                1 & \text{falls Kunde } i \text{ dem Schnittpunkte } s_k \text{ zugeordnet ist.}, i = 1, \dots n, k = 1, \dots, |S| \\
+                0 & sonst
+               \end{cases} 
+            \]
+            \[
+              c_{ik} := w_il_1(a_i, s_k), i = 1, \dots n, k = 1, \dots, |S|
+            \]
+
+               
+            
+
+            \par \textbf{Modell}
+
+            \begin{equation}
+              \begin{aligned}
+                & \underset{}{\text{min}}
+                && \sum_{i=1,\dots, n}\sum_{k=1, \dots, |S|}c_{ik}x_{ik}\\
+                % & & e - (s + re) \\
+                & \text{u.d.N}
+                & & \sum_{k = 1, \dots, p}x_{ik} = 1, \forall i \quad \text{Jeder Kunde i wird einem Schnittpunkte zugeordnet}\\
+                & & & \sum_{k = 1, \dots, |S|}y_k = p \quad \text{(p Schnittpunkte werden ausgewählt)}\\ 
+                & & & x_{ik} \leq y_k , \forall i, \forall k \quad \text{(Kunde i darf nur eineme ausgewählten Schnittpunkt k zugeordnet werden)}\\
+                & & & x_{ik}, y_{k} \in \{0, 1\}
+              \end{aligned}
+              \label{p-Median Zuordnungsproblem}
+            \end{equation}
+
+            \par Ganzzahliges lineares Programm \\
+            $\rightarrow$ Lässt sich mit Branch \& Bround-Verfahren lösen.
+
+
+
+
+          % subsubsection das_p_median_zuordnungsproblem_mit_l1_metrik (end)
+
+          \subsubsection{Das Zuordnungsproblem mit $l_2$-Metrik} % (fold)
+          \label{ssub:das_zuordnungsproblem_mit_metrik}
+          
+            \par \textbf{Zielfunktion}         
+
+            \begin{equation}
+               f(X) = \sum_{i = 1, \dots, n}w_i\underset{k=1,\dots,p}{\text{min}}l_2(x_k, a_i)
+            \end{equation} 
+
+            \begin{algorithm}[H]
+          \begin{algorithmic}[1]
+            \caption{Das Verfahren von Cooper}
+            \State Wähle eine Startlösung $X^{0} = {x_1^{(0)}, \dots, x_p^{(0)}}$ setze $l := 0$
+            \While{(!($\delta^{(l+1)}:=\frac{f(X^l)-f(X^{l+1})}{f(X^{(l)})} \leq \delta$ für ein $\delta > 0$))}
+              \State \textbf{Zuordnungsschritt (allocation)}: Berechne für $X^{(l)}$ die Partition $Pa^{(l)} = \{A_1^{(l)}, \dots, A_p^{(l)}\}$ der Kundenstandorte
+              \State \textbf{Platzierungsschritt (location)}: Bestimme die optimale Lösung $X_k^{(l+1)}$ des 1-Standortproblems mit Kunden $A_k^{(l)}$. Setze $X^{(l+1)}:= \{x_1^{(l+1), \dots, x_p^{(l+1)}}\}$
+              \State $l:=l+1$
+            \EndWhile
+              % \EndProcedure
+            \end{algorithmic}
+          % \textbf{Output:} 
+        \end{algorithm}
+
+
+          % subsubsection das_zuordnungsproblem_mit_metrik (end)
+
+
+        
+        % subsection das_p_median_zuordnungsproblem (end)
     % section zuordnungs_modelle (end)
 
   % section mehrstandortprobleme (end)
