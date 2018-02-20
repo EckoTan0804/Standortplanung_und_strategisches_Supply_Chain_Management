@@ -140,22 +140,25 @@
     \subsection{1-Medianprobleme mit $l_1$-Metrik} % (fold)
     \label{sub:1_medianprobleme_mit_l1_Metrik}
     
+      \par {\color{blue}{Aufgabe 7}}
+
       \par \textbf{Zielfunktion}
 
       \begin{equation}
         \begin{aligned}
             f(x) &= \sum_{i=1}^{n}w_il_1(x, a_i) \\
                  &= \sum_{i=1}^{n}w_il_1(\left|x_1 - a_{i,1}\right| + \left|x_2 - a_{i,2}\right|) \\
-                 &= \underbrace{\sum_{i=1}^{n}w_il_1(\left|x_1 - a_{i,1}\right|)}_{=: f_1(x_1)} + \underbrace{\sum_{i=1}^{n}w_il_1(\left|x_2 - a_{i,2}\right|}_{=:f_2(x_2)}
+                 &= \underbrace{\sum_{i=1}^{n}w_i(\left|x_1 - a_{i,1}\right|)}_{=: f_1(x_1)} + \underbrace{\sum_{i=1}^{n}w_i(\left|x_2 - a_{i,2}\right|}_{=:f_2(x_2)}
         \end{aligned}
       \end{equation}
 
       $\rightarrow$ Die ursprüngliche Aufgabe reduziert sich auf das Lösen zweier 1-dimensionaler Probleme, sogenannter ``Probleme auf der Linie''.
 
-      \subsubsection{Das 1-Medianproblem mit $l1$-Metrik auf der Linie} % (fold)
+      \subsubsection{Das 1-Medianproblem mit $l_1$-Metrik auf der Linie} % (fold)
       \label{ssub:das_1_medianproblem_mit_metrik_auf_der_linie}
       
-      \[\underset{x \in \mathbb{R}}{\text{min}} f(x) := \sum_{i= 1}{n}w_i\left|x - a_i\right|\]
+      \par \textbf{Zielfunktion}
+      \[\underset{x \in \mathbb{R}}{\text{min}} f(x) := \sum_{i= 1}^{n}w_i\left|x - a_i\right|\]
 
       \begin{algorithm}[H]
         \caption{Lösungsverfahren für das 1-Medianproblem mit $l1$-Metrik auf der Linie}
@@ -163,7 +166,7 @@
         \begin{algorithmic}[1]
           % \Procedure{MyProcedure}{}
           \State Berechne die Summe $W$ aller Gewichte $W:=\sum_{i= 1}{n}w_i$
-          \If (Es exist. ein $w_k \geq \frac{1}{2}W$)
+          \If {(Es exist. ein $w_k \geq \frac{1}{2}W$)}
             \State Der Kundenstandort $a_k$ ist eine optimale Lösung, $x^* = a_k$
             \State Stopp
           \Else
@@ -229,6 +232,8 @@
     \subsection{1-Medianprobleme mit $l_2$-Metrik} % (fold)
     \label{sub:1_medianprobleme_mit_l2_Metrik}
 
+      {\color{blue}{Aufgabe 8}}
+
       \par \textbf{Zielfunktion}
       \begin{equation}
         f(x) = \sum_{i=1}^{n}w_il_2(x, a_i) = \sum_{i=1}^{n}w_i\sqrt{(x_1 - a_{i,1})^2 + (x_2 - a_{i,2})^2}
@@ -241,7 +246,7 @@
       \par Der Standort $a_j$ eines Kunden ist optimal, falls
 
       \begin{equation}
-        \gamma(a_j) := l_2(\sum_{i=1, i \neq j} w_i \frac{a_j - a_i}{l2(a_j, a_i)}, \mathbf{0}) \leq w_j, \mathbf{0} = (0, 0)
+        \gamma(a_j) := l_2(\sum_{i=1, i \neq j}^{n} w_i \frac{a_j - a_i}{l_2(a_j, a_i)}, \mathbf{0}) \leq w_j, \mathbf{0} = (0, 0)
       \end{equation}
 
 
@@ -255,7 +260,7 @@
           \Else
             \State $k:=0$
             \State $x^{(0)}:=\frac{\sum_{i=1}^{n}w_ia_i}{\sum_{i=1}^{n}w_i}$ (Schwerpunkt)
-            \While {($\text{!}(\delta^(k+1):= \frac{f(x^{(k)}) - f(x^{(k+1)})}{f(x^{(k)})} \leq \delta$)}
+            \While {($\text{!}(\delta^{(k+1)}:= \frac{f(x^{(k)}) - f(x^{(k+1)})}{f(x^{(k)})} \leq \delta$)}
               \State $x^{(k+1)} := \frac{\sum_{i=1}^{n}w_i\frac{a_i}{l_2(x^{(k)}, a_i)}}{\sum_{i=1}^{n}w_i\frac{1}{l_2(x^{(k)}, a_i)}}$
               \State $k:=k+1$
             \EndWhile
@@ -675,7 +680,7 @@
             
             \par \textbf{Zielfunktion}
 
-            \[f(X) = \sum_{i = 1, \dots, n}w_i \underset{k = 1, \dots, p}{\text{min}\{|x_{k,1} - a_{i,1}| + {x_{k,2} - a_{i,2}}\}}\]
+            \[f(X) = \sum_{i = 1, \dots, n}w_i \underset{k = 1, \dots, p}{\text{min}}\{|x_{k,1} - a_{i,1}| + |{x_{k,2} - a_{i,2}|\}}\]
 
             \par Definiere
 
