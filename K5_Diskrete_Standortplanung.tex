@@ -305,16 +305,17 @@
               \If{($\vartriangle_i = 0$)}
                 \State $I':=I' \setminus \{i\}$
                 \State Wähle das nächste $i \in I'$
+              \Else
+                \State Setze $\vartriangle = min\{\vartriangle_i, c_i^{k(i)} - v_i\}$
+                \If{($\vartriangle = \vartriangle_i$)}
+                  \State $I' := I' \setminus \{i\}$
+                \Else 
+                  \State $k(i) := k(i) + 1$
+                \EndIf
+                \State Setze $v_i := v_i + \vartriangle$ 
+                \State Für $\forall j \in J_i$, setze $s_j := s_j - \vartriangle$
+                \State Aktualisiere $J_i$
               \EndIf
-              \State Setze $\vartriangle = min\{\vartriangle_i, c_i^{k(i)} - v_i\}$
-              \If{($\vartriangle = \vartriangle_i$)}
-                \State $I' := I' \setminus \{i\}$
-              \Else 
-                \State $k(i) := k(i) + 1$
-              \EndIf
-              \State Setze $v_i := v_i + \vartriangle$ 
-              \State Für $\forall j \in J_i$, setze $s_j := s_j - \vartriangle$
-              \State Aktualisiere $J_i$
             \EndWhile
             \end{algorithmic}
           \textbf{Output:eine heuristische Lösung von (RDP) (Untere Schranke für das (WLP))} 
@@ -375,7 +376,7 @@
             \State Für $\forall i \in I$: 
             \If{(Es gibt für Kunde $i$ genau einen Standort $j \in J^+$ mit $c_{ij} \leq v_i$ und $j \notin X$)}
               \State Setze $X = X \cup \{j\}, y_j = 1$
-            \ElsIf{(Es gibt für Kunde $i$ mehrere Standorte $j \in J^+$ mit ,$c_{ij} \leq v_i$ aber keines dieser $j \in X$)}
+            \ElsIf{(Es gibt für Kunde $i$ mehrere Standorte $j \in J^+$ mit $c_{ij}, \leq v_i$ aber keines dieser $j \in X$)}
               \State setze $X = X \cup \{j^*\}, y_{j^*} = 1$ für das $j^*$ mit $c_{ij^*} = min\{c_{ij}|c_{ij} \leq v_i\}$
             \EndIf
             \State \textbf{Zuordnung}

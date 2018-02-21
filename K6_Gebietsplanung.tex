@@ -80,10 +80,24 @@
             cp(D_j) = \frac{A_{A_j}}{A_{uk}} \leq 1
           \end{equation*}
 
+          \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.95\textwidth]{Images/Reock_Test_Bsp.png}
+            \caption{Reock Test Bsp}
+            \label{fig:Reock-Test_Bsp}
+          \end{figure}
+
           \item Schwartzberg-Test: Bilde das Verhältnis zwischen dem Umfang eines Kreises, der dadurch festgelegt ist, dass er den gleichen Flächeninhalt wie das Gebiet hat, und dem Umfangs des Gebiets.
           \begin{equation*}
             cp(D_j) = \frac{2 \cdot \sqrt{\pi \cdot A_{D_j}}}{U_{D_j}} \leq 1
           \end{equation*}
+
+          \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.95\textwidth]{Images/Schwartzberg_Test_Bsp.png}
+            \caption{Schwartzberg-Test Bsp}
+            \label{fig:Schwartzberg-Test_Bsp}
+          \end{figure}
 
         \end{itemize}
       \end{quote}
@@ -119,7 +133,7 @@
         \item \begin{equation*}
                     x_{uv} = 
                     \begin{cases}
-                      1 & \text{falls Basisgebiet } u \text{ einem Gebit mit dem Zentrum } v \text{ zugeordnet wird.} \\
+                      1 & \text{falls Basisgebiet } u \text{ einem Gebiet mit dem Zentrum } v \text{ zugeordnet wird.} \\
                       0 & sonst
                     \end{cases}
                 \label{trivial wage scheme}
@@ -219,6 +233,18 @@
     \subsection{Algorithmus} % (fold)
     \label{sub:algorithmus}
 
+      \par Definiere:
+
+      $$k': \frac{w(B_l^{k'})}{q_l} < \frac{w(B)}{q} \wedge \frac{w(B_l^{k' + 1})}{q_l} \geq \frac{w(B)}{q}$$
+
+      $$
+        k^*:= \begin{cases}
+          k', & \text{falls } \frac{w(B)}{q} - \frac{w(B_l^{k'})}{q_l} \leq \frac{w(B_l^{k+1})}{q_l} - \frac{w(B)}{q} \\
+          k'+1, & sonst
+        \end{cases}
+      $$
+
+
       \begin{algorithm}
         \caption{Recursive-Partitioning-Algorithmus}\label{Recursive-Partitioning-Algorithmus}
         \textbf{Input}: Anzahl Suchrichtungen $K, \beta, V, p$
@@ -233,13 +259,18 @@
             \EndIf
 
             \If {$q > 1$}
-              \State Bestimme für jede Suchrichtung die Linienpartition $LP(k^*)$ mit der besten Balance und füge sie einer Menge $FLP$ hinzu.
+              \State Bestimme für jede Suchrichtung die Linienpartition $LP(k^*)$ mit der besten Balance
+
+              $$bal(LP) = max\{\frac{|\frac{w(B_l)}{q_l} - \mu|}{\mu}, \frac{|\frac{w(B_r)}{q_r} - \mu|}{\mu}\}$$
+
+              und füge sie einer Menge $FLP$ hinzu.
               \State Bewerte alle Linienpartitionen $LP$ der Menge $FLP$ durch:
               
                 \begin{equation*}
                   rk(LP) = \beta\frac{bal(LP)}{bal^{max}} + (1 - \beta)\frac{cp(LP)}{cp^{max}}
                 \end{equation*}
-
+              mit 
+              $$cp(LP) = d(c_1, c_2) = l_2(c_1, c_2)$$
               \State Wähle $LP^{*} = (B_{l}^{*}, B_{r}^{*}, q_{l}^{*}, q_{r}^{*}) = \underset{LP \in FLP}{\text{min}}rk(FLP)$ 
 
               \State Erstelle Partitionsprobleme $PP_l = (B_{l}^{*}, q_{l}^{*})$ und $PP_r = (B_{r}^{*}, q_{r}^{*})$ und markiere sie als ungelöst, markiere $PP$ als gelöst.

@@ -232,7 +232,10 @@
     \subsection{1-Medianprobleme mit $l_2$-Metrik} % (fold)
     \label{sub:1_medianprobleme_mit_l2_Metrik}
 
-      {\color{blue}{Aufgabe 8}}
+      \begin{exmp}
+        {\color{blue}{Aufgabe 8}}
+      \end{exmp}
+      
 
       \par \textbf{Zielfunktion}
       \begin{equation}
@@ -294,6 +297,10 @@
 
     \subsection{1-Centerprobleme mit $l_1$-Metrik} % (fold)
     \label{sub:1_centerprobleme_mit_l_1_metrik}
+
+      \begin{exmp}
+        {\color{blue}{Aufgabe 9}}
+      \end{exmp}
 
       \par \textbf{Zielfunktion}
 
@@ -375,7 +382,7 @@
 
           \begin{figure}[H]
             \centering
-            \includegraphics[width=0.95\textwidth]{Images/Loesungsverfahren_fuer_ungewichtete_1_Centreprobleme_Bsp.png}
+            \includegraphics[width=0.95\textwidth]{Images/ungewichtete_1_Centerproblme_mit_l_infty_metrik_Bsp.png}
             % \caption{Lösungsverfahren für ungewichtete 1-Centreprobleme mit $l_{\infty}$-Metrik}
             % \label{fig:Lösungsverfahren für ungewichtete 1-Centreprobleme mit l_{\infty}-Metrik}
           \end{figure}
@@ -459,6 +466,9 @@
     \subsection{1-Centerprobleme mit $l_2$-Metrik} % (fold)
     \label{sub:1_centerprobleme_mit_l_2_metrik}
 
+      \begin{exmp}
+        {\color{blue}{Aufgabe 10}}
+      \end{exmp}
       \subsubsection{Zielfunktion} % (fold)
       \label{ssub:zielfunktion}
         \begin{equation}
@@ -491,6 +501,34 @@
         \end{algorithm}
 
         \par Komplexität:$O(n^4) \rightarrow$ zu langsam!
+
+        \par \textbf{Minimal-überdeckender Kreis (MÜK)}
+
+        \begin{itemize}
+          \item von zwei Kundenstandorten $a_i$ und $a_j$
+            \begin{itemize}
+               \item Mittelpunkt: $x = (\frac{a_{i,1}+a_{j_1}}{2}, \frac{a_{i,2}+a_{j_2}}{2})$
+               \item Radius:$r = \frac{1}{2}l_2(a_i, a_j)$
+             \end{itemize} 
+          \item von drei Kunden $a_i, a_j, a_k \in A$
+            \begin{itemize}
+              \item Fall 1: Das Dreieck $a_i, a_j, a_k$ besitzt einen stumpfen Winkel ($ \geq 90^\circ$) $\Rightarrow$ Der MÜK ist durch die beiden Endpunkte der längsten Dreiecksseite definiert.
+              \item Fall 2: Der MÜK entspricht dem Umkreis des Dreiecks $a_i, a_j, a_k$ $\Rightarrow$ Umkreis $UK(x,r)$
+                \begin{itemize}
+                   \item Mittelpunkt $x$: Schnittpunkt zweier Mittelsenkrechten
+                    \begin{itemize}
+                      \item Mittelsenkrechte zwischen zwei Punkten $a_i$ und $a_j$ gleichen Gewichts ist eine Gerade:
+                      $$MS(a_i, a_j) := m_{ij} \cdot x_1 + b_{ij} := \frac{a_{i,1}-a_{j,1}}{a_{j,2}-a_{i,2}}\cdot x_1 + \frac{a_{j,1}^2 + a_{j,2}^2 - a_{i,1}^2 - a_{i,2}^2}{2(a_{j,2} - a_{i,2})}$$
+                      \item Schnittpunkt $x$ zweier Mittelsenkrechten $MS(a_i, a_j) = m_{ij}x_1 + b_{ij}$ und $MS(a_i, a_k) = m_{ik}x_1 + b_{ik}$ ist der Punkt 
+
+                      $$x = (\frac{b_{ik} - b_{ij}}{m_{ij} - m_{ik}}, \frac{m_{ij}\cdot b_{ik} - b_{ij}\cdot m_{ik}}{m_{ij}-m_{ik}})$$
+                    \end{itemize}
+                   \item Radius $r$: Entfernung von $x$ zu einem der drei Eckpunkte des Dreiecks 
+                   $$r= l_2(x, a_i)$$
+                 \end{itemize} 
+            \end{itemize}
+        \end{itemize}
+
 
         \begin{algorithm}[H]
           \begin{algorithmic}[1]
@@ -534,6 +572,10 @@
   \section{Mehrstandortprobleme} % (fold)
   \label{sec:mehrstandortprobleme}
 
+    \begin{exmp}
+      {\color{blue}{Aufgabe 10}}
+    \end{exmp}
+
     \par Platziere $p$ neue Einrichtungen $X={x_1, \dots, x_p}, p \geq 2$ in der Ebene
 
     \begin{itemize}
@@ -565,7 +607,7 @@
       
         \begin{equation}
           \begin{aligned}
-            \underset{X \subseteq \mathbb{R}^2, |X| = p}{\text{min}}f(X):= \sum_{i = 1}^{n}\sum_{k = 1}^{p}w{ik}d(x_k, a_i) + \sum_{k = 1}^{p - 1}\sum_{l = k + 1}^{p}s_{kl}d(x_k, x_l)    
+            \underset{X \subseteq \mathbb{R}^2, |X| = p}{\text{min}}f(X):= \sum_{i = 1}^{n}\sum_{k = 1}^{p}w_{ik}d(x_k, a_i) + \sum_{k = 1}^{p - 1}\sum_{l = k + 1}^{p}s_{kl}d(x_k, x_l)    
           \end{aligned}
         \end{equation}
       % subsubsection zielfunktion (end)
