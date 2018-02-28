@@ -376,7 +376,7 @@
             \State Für $\forall i \in I$: 
             \If{(Es gibt für Kunde $i$ genau einen Standort $j \in J^+$ mit $c_{ij} \leq v_i$ und $j \notin X$)}
               \State Setze $X = X \cup \{j\}, y_j = 1$
-            \ElsIf{(Es gibt für Kunde $i$ mehrere Standorte $j \in J^+$ mit $c_{ij}, \leq v_i$ aber keines dieser $j \in X$)}
+            \ElsIf{(Es gibt für Kunde $i$ mehrere Standorte $j \in J^+$ mit $c_{ij} \leq v_i$, aber keines dieser $j \in X$)}
               \State setze $X = X \cup \{j^*\}, y_{j^*} = 1$ für das $j^*$ mit $c_{ij^*} = min\{c_{ij}|c_{ij} \leq v_i\}$
             \EndIf
             \State \textbf{Zuordnung}
@@ -423,7 +423,7 @@
           \item $J_i^x := \{j \in X | v_i > c_{ij}\}$
           \item $c_{ij^*} = min\{c_{ij} | j \in J_i^x\}$
           \item $c_{ij^{**}} = min\{c_{ij} | j \in J_i^x, j \neq j^*\}$
-          \item $I_J^x = \{i \in I | j \in X \text{ ist der einzige Standort mit } v_i \geq c_{ij}\}, j \in X$ 
+          \item $I_j^x = \{i \in I | j \in X \text{ ist der einzige Standort mit } v_i \geq c_{ij}\}, j \in X$ 
         \end{itemize}
         
         
